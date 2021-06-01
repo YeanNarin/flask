@@ -19,7 +19,7 @@ DB_PWD = 'biiiriiiniii13'  # database password
 DB_NAME = 'qadb'
 
 app.config['SQLALCHEMY_DATABASE_URI'] = "postgres://bcujtmsagtfmxw:6abc37a3c7ba319b813868ea3e4a31fbad31449ec52b96b262440421b9b71579@ec2-54-91-188-254.compute-1.amazonaws.com:5432/d4n3g16gd21igo"
-
+app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URL').replace("://", "ql://", 1)
 login_manager = LoginManager()
 login_manager.init_app(app)
 
