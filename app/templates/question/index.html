@@ -90,7 +90,7 @@ display: none;
               <a class="nav-link" href="#">Share</a>
               <a class="nav-link" href="#">Report</a>
 
-              <a class="nav-link" href="#">Logged in as -{{User['FullName']}}</a>
+              <a class="nav-link" href="#"><img style="border-radius:50%; height:30px;width:30px" src="{{ avatars.gravatar(Avatar) }}"> Logged in as -{{User['FullName']}}</a>
 
             </nav>
 
@@ -114,7 +114,7 @@ display: none;
     <h5>{{Totalcmt}} Comment(s)</h5>
         {% for comment in Comment %}
 <br>
-    <p style=" color: #031b4e; text-align:left; margin: 0px 0px 0px 0px">  . {{comment["Comment"]| safe}} , <span style="color:black">Comment : By - {{comment["FullName"]}} - Date - {{comment["Created_On"]}}</span></p>
+    <p style=" color: #031b4e; text-align:left; margin: 0px 0px 0px 0px">  . {{comment["Comment"]| safe}} , <span style="color:black">Comment : <img style="border-radius:50%; height:25px;width:25px" src="{{ avatars.gravatar(Avatar) }}"> By - {{comment["FullName"]}} - Date - {{comment["Created_On"]}}</span></p>
     {% endfor %}
 <br>
     <br>
@@ -136,7 +136,7 @@ display: none;
     <h5>{{TotalA}} Answer(s)</h5>
     {% for answer in  Answer %}
     <br>
-    <p style=" color: #031b4e; text-align:left; margin: 0px 0px 0px 0px">  . {{answer["Answer"] | safe}} . <span style="color:black">Answer : By - {{answer["FullName"]}} - Date - {{answer["Created_On"]}}</span></p>
+    <p style=" color: #031b4e; text-align:left; margin: 0px 0px 0px 0px">  . {{answer["Answer"] | safe}} . <span style="color:black">Answer : <img style="border-radius:50%; height:25px;width:25px" src="{{ avatars.gravatar(Avatar) }}"> By - {{answer["FullName"]}} - Date - {{answer["Created_On"]}}</span></p>
     {% endfor %}<br><br>
 </div>
 <button id="btnans" type="button" class="btn btn-white btn-lg btn-block" style="color:#0085ff;border: 1px solid #0085ff">Submit an Answer</button>
@@ -161,10 +161,14 @@ display: none;
 
       </div>
                 <br>
-      {% for question in Question %}
-          {{question["Question_Tittle"]}}
-          <br><p style="color:#0085ff ;"><i class="far fa-question-circle"></i> Question</p>
+
+      {% for question in Limit %}
+                <a href="{{ url_for('ViewQuestionAnswer', QuestionID=question['ID']) }}">
+                    <h6 style="color: #031b4e">{{question["Question_Tittle"]}}</h6>
+                <p style="color:#0085ff ;"><i class="far fa-question-circle"></i> Question</p>
+                </a>
         {% endfor %}
+
     </div>
 
 
